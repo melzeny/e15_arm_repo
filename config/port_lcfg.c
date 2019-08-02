@@ -6,7 +6,6 @@
  */
 
 #include "../mcal/port_driver/port_types.h"
-#include "../mcal/port_driver/Port_hw.h"
 #include "port_cfg.h"
 
 Port_CfgType PortCfgArr[PORT_NUM_OF_ACTIVATED_CH] = {
@@ -57,10 +56,10 @@ Port_CfgType PortCfgArr[PORT_NUM_OF_ACTIVATED_CH] = {
 {     Port_Channel_E4,          port_Dir_Input,          Port_Mode_DIO,          Port_IntDisable,        Port_InternalAttach_OpenDrain,         Port_CurrDrive_2mA,         Port_locked     },
 {     Port_Channel_E5,          port_Dir_Input,          Port_Mode_DIO,          Port_IntDisable,        Port_InternalAttach_OpenDrain,         Port_CurrDrive_2mA,         Port_locked     },
 
-{     Port_Channel_F0,          port_Dir_Input,          Port_Mode_DIO,          Port_IntDisable,        Port_InternalAttach_OpenDrain,         Port_CurrDrive_2mA,         Port_locked     },
-{     Port_Channel_F1,          port_Dir_Input,          Port_Mode_DIO,          Port_IntDisable,        Port_InternalAttach_OpenDrain,         Port_CurrDrive_2mA,         Port_locked     },
-{     Port_Channel_F2,          port_Dir_Input,          Port_Mode_DIO,          Port_IntDisable,        Port_InternalAttach_OpenDrain,         Port_CurrDrive_2mA,         Port_locked     },
-{     Port_Channel_F3,          port_Dir_Input,          Port_Mode_DIO,          Port_IntDisable,        Port_InternalAttach_OpenDrain,         Port_CurrDrive_2mA,         Port_locked     },
-{     Port_Channel_F4,          port_Dir_Input,          Port_Mode_DIO,          Port_IntDisable,        Port_InternalAttach_OpenDrain,         Port_CurrDrive_2mA,         Port_locked     }
+{     Port_Channel_F0,          port_Dir_Output,          Port_Mode_DIO,          Port_IntDisable,        Port_InternalAttach_OpenDrain,         Port_CurrDrive_2mA,         Port_locked     },
+{     Port_Channel_F1,          port_Dir_Output,          Port_Mode_DIO,          Port_IntDisable,        Port_InternalAttach_OpenDrain,         Port_CurrDrive_2mA,         Port_locked     },
+{     Port_Channel_F2,          port_Dir_Output,          Port_Mode_DIO,          Port_IntDisable,        Port_InternalAttach_OpenDrain,         Port_CurrDrive_2mA,         Port_locked     },
+{     Port_Channel_F3,          port_Dir_Output,          Port_Mode_DIO,          Port_IntDisable,        Port_InternalAttach_OpenDrain,         Port_CurrDrive_2mA,         Port_locked     },
+{     Port_Channel_F4,          port_Dir_Output,          Port_Mode_DIO,          Port_IntDisable,        Port_InternalAttach_OpenDrain,         Port_CurrDrive_2mA,         Port_locked     }
 
 };

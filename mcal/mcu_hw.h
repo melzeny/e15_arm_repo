@@ -8,14 +8,12 @@
 #ifndef E15_ARM_REPO_MCAL_PORT_DRIVER_PORT_HW_H_
 #define E15_ARM_REPO_MCAL_PORT_DRIVER_PORT_HW_H_
 
-#include "../../utils/STD_types.h"
+#include "../utils/STD_Types.h"
 
 typedef struct
 {
-    uint32 GPIODATA    ; /*offset : 0x000 - > 0x004 */
-
-    uint8 Reserved_1[0x3FC];
-    uint32 GPIODIR     ; /*offset : 0x400*/
+    uint32 GPIODATA    ;
+    uint32 GPIODIR     ;
     uint32 GPIOIS      ;
     uint32 GPIOIBE     ;
     uint32 GPIOIEV     ;
@@ -42,12 +40,13 @@ typedef struct
     uint32 GPIODMACTL  ;
 }PORT_RegType;
 
-#define PORT_REG_A      *((PORT_RegType*)0x40058000)
-#define PORT_REG_B      *((PORT_RegType*)0x40059000)
-#define PORT_REG_C      *((PORT_RegType*)0x4005A000)
-#define PORT_REG_D      *((PORT_RegType*)0x4005B000)
-#define PORT_REG_E      *((PORT_RegType*)0x4005C000)
-#define PORT_REG_F      *((PORT_RegType*)0x4005D000)
+#define PORTA_REG     (*((volatile PORT_RegType*)0x400043FC))
+#define PORTB_REG     (*((volatile PORT_RegType*)0x400053FC))
+#define PORTC_REG     (*((volatile PORT_RegType*)0x400063FC))
+#define PORTD_REG     (*((volatile PORT_RegType*)0x400073FC))
+#define PORTE_REG     (*((volatile PORT_RegType*)0x400243FC))
+#define PORTF_REG     (*((volatile PORT_RegType*)0x400253FC))
 
+#define RCGCGPIO_REG    (*((volatile uint32*)0x400FE608))
 
 #endif /* E15_ARM_REPO_MCAL_PORT_DRIVER_PORT_HW_H_ */
