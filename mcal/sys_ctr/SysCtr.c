@@ -11,13 +11,13 @@
 
 void SysCtr_init(void)
 {
+    RCGCGPIO_REG.R0  = SYSCTR_RCC_GPIO_PORTA;
+    RCGCGPIO_REG.R1  = SYSCTR_RCC_GPIO_PORTB;
+    RCGCGPIO_REG.R2  = SYSCTR_RCC_GPIO_PORTC;
+    RCGCGPIO_REG.R3  = SYSCTR_RCC_GPIO_PORTD;
+    RCGCGPIO_REG.R4  = SYSCTR_RCC_GPIO_PORTE;
+    RCGCGPIO_REG.R5  = SYSCTR_RCC_GPIO_PORTF;
 
-    RCGCGPIO_REG = SYSCTR_RCC_GPIO_PORTA        |
-            SYSCTR_RCC_GPIO_PORTB<<1            |
-            SYSCTR_RCC_GPIO_PORTC<<2            |
-            SYSCTR_RCC_GPIO_PORTD<<3            |
-            SYSCTR_RCC_GPIO_PORTE<<4            |
-            SYSCTR_RCC_GPIO_PORTF<<5            ;
 }
 
 

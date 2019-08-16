@@ -28,6 +28,12 @@ typedef enum
 
 typedef enum
 {
+    STD_off=0,
+    STD_on=!STD_off
+}STD_BoolType;
+
+typedef enum
+{
     STD_Suspended=0,
     STD_Active=!STD_Suspended
 }STD_StatusType;

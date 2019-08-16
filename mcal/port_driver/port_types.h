@@ -115,6 +115,7 @@ typedef enum
 
 typedef enum
 {
+    Port_InternalAttach_NA,
     Port_InternalAttach_PullUpRes,
     Port_InternalAttach_PullDownRes,
     Port_InternalAttach_OpenDrain,

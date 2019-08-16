@@ -47,6 +47,15 @@ typedef struct
 #define PORTE_REG     (*((volatile PORT_RegType*)0x400243FC))
 #define PORTF_REG     (*((volatile PORT_RegType*)0x400253FC))
 
-#define RCGCGPIO_REG    (*((volatile uint32*)0x400FE608))
+typedef struct
+{
+    uint32 R0:1;
+    uint32 R1:1;
+    uint32 R2:1;
+    uint32 R3:1;
+    uint32 R4:1;
+    uint32 R5:1;
+}RCGCGPIO_TagType;
+#define RCGCGPIO_REG    (*((volatile RCGCGPIO_TagType*)0x400FE608))
 
 #endif /* E15_ARM_REPO_MCAL_PORT_DRIVER_PORT_HW_H_ */

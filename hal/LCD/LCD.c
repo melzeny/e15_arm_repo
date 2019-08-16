@@ -66,7 +66,7 @@ void LCD_writeCharData(uint8 u8Data)
 
 #elif LCD_MODE_SELECTOR == LCD_MODE_4_PIN
 
-	Dio_WriteChannel(LCD_PIN_D4,GET_BIT(u8Data,4));
+	Dio_WriteChannel(LCD_PIN_D4,GET_BIT(u8Data,4) );
 	Dio_WriteChannel(LCD_PIN_D5,GET_BIT(u8Data,5));
 	Dio_WriteChannel(LCD_PIN_D6,GET_BIT(u8Data,6));
 	Dio_WriteChannel(LCD_PIN_D7,GET_BIT(u8Data,7));

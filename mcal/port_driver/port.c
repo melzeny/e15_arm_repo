@@ -21,7 +21,7 @@ void PORT_init(void)
     uint8 i;
     Port_IdType PortId;
     Port_ChIdType ChId;
-    PORT_RegType* PORT_Addr;
+    volatile PORT_RegType* PORT_Addr;
     for (i = 0; i < PORT_NUM_OF_ACTIVATED_CH; ++i)
     {
         PortId = i/ MAX_NUM_OF_CH_IN_PORT;
@@ -79,12 +79,10 @@ void PORT_init(void)
             SET_BIT(PORTA_REG.GPIOIM, ChId);
             if(PortCfgArr[i].Interrupt == Port_IntRisingEdge)
             {
-                CLR_BIT(PORT_Addr->GPIOIBE,ChId);
                 SET_BIT(PORT_Addr->GPIOIEV,ChId);
             }
             else if(PortCfgArr[i].Interrupt == Port_IntFallingEdge)
             {
-                CLR_BIT(PORT_Addr->GPIOIBE,ChId);
                 CLR_BIT(PORT_Addr->GPIOIEV,ChId);
             }
             else if(PortCfgArr[i].Interrupt == Port_IntBothEdges)
@@ -92,6 +90,7 @@ void PORT_init(void)
                 SET_BIT(PORT_Addr->GPIOIBE,ChId);
             }
         }
+
         /* set Internal Attachment configuration */
         if(PortCfgArr[i].AttachedRes == Port_InternalAttach_PullUpRes)
         {
@@ -103,6 +102,7 @@ void PORT_init(void)
         {
             SET_BIT(PORT_Addr->GPIOODR,ChId);
         }
+
         /*set current strength configuration */
         if(PortCfgArr[i].CurrentDrive == Port_CurrDrive_2mA)
         {
