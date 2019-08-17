@@ -16,6 +16,15 @@
 #define SYSCTR_RCC_GPIO_PORTE               ENABLE
 #define SYSCTR_RCC_GPIO_PORTF               ENABLE
 
+#define SYSCTR_RCC_GPIO_UART0               DISABLE
+#define SYSCTR_RCC_GPIO_UART1               ENABLE
+#define SYSCTR_RCC_GPIO_UART2               DISABLE
+#define SYSCTR_RCC_GPIO_UART3               DISABLE
+#define SYSCTR_RCC_GPIO_UART4               DISABLE
+#define SYSCTR_RCC_GPIO_UART5               DISABLE
+#define SYSCTR_RCC_GPIO_UART6               DISABLE
+#define SYSCTR_RCC_GPIO_UART7               DISABLE
+
 
 
 #endif /* E15_ARM_REPO_CONFIG_SYSCTR_CFG_H_ */

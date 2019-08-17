@@ -8,8 +8,8 @@
 #ifndef SRC_DEVICE_DRIVER_UART_UART_CFG_H_
 #define SRC_DEVICE_DRIVER_UART_UART_CFG_H_
 
-
-#define  SYSCTR_CLOCK_Hz        8000000
+#define RX_BUFFER_MAX_SIZE                      50
+#define  SYSCTR_CLOCK_Hz                        8000000
 
 
 #define UART_PARITY_STICK                       STD_off
@@ -45,7 +45,7 @@
 /*The following configuration for baud 115200
  * and UartClock 16 M _ ClockDiv = 16
  * */
-#define UART_BAUD_RATE                          115200
+#define UART_BAUD_RATE                          9600
 
 /*Configure UART interrupts*/
 #define UART_INTERRUPT_BREAKERROR               STD_off
@@ -55,7 +55,7 @@
 #define UART_INTERRUPT_PARITYERROR              STD_off
 #define UART_INTERRUPT_RXTIMEOUT                STD_off
 #define UART_INTERRUPT_RX                       STD_on
-#define UART_INTERRUPT_TX                       STD_on
+#define UART_INTERRUPT_TX                       STD_off
 #define UART_INTERRUPT_9BIT                     STD_off
 
 /* configure loop bach to connect Tx with Rx for debugging*/

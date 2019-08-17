@@ -55,7 +55,11 @@ typedef struct
     uint32 R3:1;
     uint32 R4:1;
     uint32 R5:1;
-}RCGCGPIO_TagType;
-#define RCGCGPIO_REG    (*((volatile RCGCGPIO_TagType*)0x400FE608))
+    uint32 R6:1;
+    uint32 R7:1;
+}RCGC_TagType;
+
+#define RCGCGPIO_REG    (*((volatile RCGC_TagType*)0x400FE608))
+#define RCGCUART_REG    (*((volatile RCGC_TagType*)0x400FE618))
 
 #endif /* E15_ARM_REPO_MCAL_PORT_DRIVER_PORT_HW_H_ */

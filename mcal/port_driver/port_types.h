@@ -8,6 +8,36 @@
 #ifndef E15_ARM_REPO_MCAL_PORT_DRIVER_PORT_TYPES_H_
 #define E15_ARM_REPO_MCAL_PORT_DRIVER_PORT_TYPES_H_
 
+#define PORT_MODE_PIN_X_DIO              0
+#define PORT_MODE_PIN_B0_U1RX            1
+#define PORT_MODE_PIN_B1_U1TX            1
+#define PORT_MODE_PIN_A2_SSI0Clk            2
+#define PORT_MODE_PIN_A3_SSI0Fss            2
+#define PORT_MODE_PIN_A4_SSI0Rx             2
+#define PORT_MODE_PIN_A5_SSI0Tx             2
+
+#define PORT_MODE_PIN_B4_SSI2Clk            2
+#define PORT_MODE_PIN_B5_SSI2Fss            2
+#define PORT_MODE_PIN_B6_SSI2Rx             2
+#define PORT_MODE_PIN_B7_SSI2Tx             2
+
+#define PORT_MODE_PIN_D0_SSI1Clk            2
+#define PORT_MODE_PIN_D1_SSI1Fss            2
+#define PORT_MODE_PIN_D2_SSI1Rx             2
+#define PORT_MODE_PIN_D3_SSI1Tx             2
+
+#define PORT_MODE_PIN_D0_SSI3Clk            1
+#define PORT_MODE_PIN_D1_SSI3Fss            1
+#define PORT_MODE_PIN_D2_SSI3Rx             1
+#define PORT_MODE_PIN_D3_SSI3Tx             1
+
+#define PORT_MODE_PIN_F0_SSI1Clk            2
+#define PORT_MODE_PIN_F1_SSI1Fss            2
+#define PORT_MODE_PIN_F2_SSI1Rx             2
+#define PORT_MODE_PIN_F3_SSI1Tx             2
+
+
+#include "../../utils/STD_Types.h"
 typedef enum
 {
     Port_Channel_A0,
@@ -132,9 +162,9 @@ typedef enum
 
 typedef struct
 {
-    Port_ChIdType        Channel;
+    Port_ChIdType           Channel;
     Port_DirType            Dir;
-    Port_ModeType           Mode;
+    uint8                   Mode;
     Port_IntCtrType         Interrupt;
     Port_InternalAttachType AttachedRes;
     Port_CurrDriveType      CurrentDrive;

@@ -60,13 +60,15 @@ void PORT_init(void)
         }
 
         /* set channel mode */
-        if(PortCfgArr[i].Mode == Port_Mode_DIO)
+        if(PortCfgArr[i].Mode == PORT_MODE_PIN_X_DIO)
         {
             CLR_BIT(PORT_Addr->GPIOAFSEL, ChId);
         }
         else
         {
             SET_BIT(PORT_Addr->GPIOAFSEL, ChId);
+
+            PORT_Addr->GPIOPCTL |= ( PortCfgArr[i].Mode << (ChId*4) );
         }
 
         /* set Interrupt configuration */
