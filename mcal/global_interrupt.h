@@ -8,13 +8,7 @@
 #ifndef SRC_DEVICE_DRIVER_GLOBAL_INTERRUPT_H_
 #define SRC_DEVICE_DRIVER_GLOBAL_INTERRUPT_H_
 
-#define GI_ENABLE()             __asm("    mrs     r0, PRIMASK\n"\
-                                      "    cpsie   i\n"\
-                                      "    bx      lr\n")
-
-
-#define GI_DISABLE()            __asm("    mrs     r0, PRIMASK\n"\
-                                      "    cpsid   i\n"\
-                                      "    bx      lr\n")
+#define GI_ENABLE()             __asm("    cpsie   i\n");
+#define GI_DISABLE()            __asm("    cpsid   i\n");
 
 #endif /* SRC_DEVICE_DRIVER_GLOBAL_INTERRUPT_H_ */

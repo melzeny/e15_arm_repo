@@ -8,9 +8,9 @@
      INCLUDES
  *========================================================*/
 #include "../../utils/STD_Types.h"
+#include "../mcu_hw.h"
+#include "../../config/uart_cfg.h"
 #include "uart_types.h"
-#include "uart_hw.h"
-#include "uart_cfg.h"
 #include "uart.h"
 
 
@@ -126,7 +126,7 @@ void UART_sendMsg(UART_ModNumType UartNo, uint8 Msg[], uint8 MsgLength)
     uint8 i;
     for (i = 0; i < MsgLength; ++i)
     {
-        UART1_DR_R = 'a';
+        UART1_DR_R = Msg[i];
         /*wait for Transmission to b completed*/
         while(UART1_FR.B.BUSY == STD_high)
         {
@@ -187,8 +187,8 @@ void UART1_InterruptHandler(void)
     {
 
     }
-    /*clear all flags*/
-   // UART1_ICR.R |= UART_INTERRUPT_MSK;
+    /*TODO : clear flags*/
+
 }
 
 

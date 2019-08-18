@@ -11,33 +11,33 @@
 #include "../utils/STD_types.h"
 
 
-#define GPIO_PORTA_NVIC     ENABLE ;
-#define GPIO_PORTB_NVIC     ENABLE ;
-#define GPIO_PORTC_NVIC     ENABLE ;
-#define GPIO_PORTD_NVIC     ENABLE ;
-#define GPIO_PORTE_NVIC     ENABLE ;
-#define GPIO_PORTF_NVIC     ENABLE ;
+#define GPIO_PORTA_NVIC     DISABLE ;
+#define GPIO_PORTB_NVIC     DISABLE ;
+#define GPIO_PORTC_NVIC     DISABLE ;
+#define GPIO_PORTD_NVIC     DISABLE ;
+#define GPIO_PORTE_NVIC     DISABLE ;
+#define GPIO_PORTF_NVIC     DISABLE ;
 
-#define UART0_NVIC          ENABLE ;
+#define UART0_NVIC          DISABLE ;
 #define UART1_NVIC          ENABLE ;
-#define UART2_NVIC          ENABLE ;
-#define UART3_NVIC          ENABLE ;
-#define UART4_NVIC          ENABLE ;
-#define UART5_NVIC          ENABLE ;
-#define UART6_NVIC          ENABLE ;
-#define UART7_NVIC          ENABLE ;
+#define UART2_NVIC          DISABLE ;
+#define UART3_NVIC          DISABLE ;
+#define UART4_NVIC          DISABLE ;
+#define UART5_NVIC          DISABLE ;
+#define UART6_NVIC          DISABLE ;
+#define UART7_NVIC          DISABLE ;
 
-#define SPI0_NVIC           ENABLE ;
-#define SPI1_NVIC           ENABLE ;
-#define SPI2_NVIC           ENABLE ;
-#define SPI3_NVIC           ENABLE ;
+#define SPI0_NVIC           DISABLE ;
+#define SPI1_NVIC           DISABLE ;
+#define SPI2_NVIC           DISABLE ;
+#define SPI3_NVIC           DISABLE ;
 
-#define I2C0_NVIC           ENABLE ;
-#define I2C1_NVIC           ENABLE ;
-#define I2C2_NVIC           ENABLE ;
-#define I2C3_NVIC           ENABLE ;
+#define I2C0_NVIC           DISABLE ;
+#define I2C1_NVIC           DISABLE ;
+#define I2C2_NVIC           DISABLE ;
+#define I2C3_NVIC           DISABLE ;
 
-#define WATCHDOG_T0_T1      ENABLE ;
+#define WATCHDOG_T0_T1      DISABLE ;
 
 
 #endif /* E15_ARM_REPO_CONFIG_NVIC_CFG_H_ */

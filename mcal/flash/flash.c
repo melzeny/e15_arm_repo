@@ -7,10 +7,7 @@
 /*========================================================
      INCLUDES
 *========================================================*/
-#include <AUTOSAR31/Platform_Types.h>
-#include <AUTOSAR31/Compiler.h>
-#include <AUTOSAR31/Std_Types.h>
-#include "flash_hw.h"
+#include "../mcu_hw.h"
 #include "flash_cfg.h"
 #include "flash.h"
 /*========================================================
@@ -32,9 +29,9 @@ void FLASH_writeData(uint32 u32Addr,uint32* u32Data,uint32 u32DataLength)
         /*start writing from FMD to Flash*/
         FLASH_FMC_R = 0xA4420001;
 
-        while(FLASH_FCRIS.B.Prog == STD_LOW);
+        while(FLASH_FCRIS.B.Prog == STD_low);
         /*clear program cycle interrupt flag*/
-        FLASH_FCMISC.B.Prog == STD_HIGH;
+        FLASH_FCMISC.B.Prog == STD_high;
         FLASH_FMA_R+=4;
     }
 

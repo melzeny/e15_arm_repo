@@ -9,7 +9,7 @@
 #include "../../utils/STD_Types.h"
 #include "../../utils/Bit_Math.h"
 #include "../../config/nvic_cfg.h"
-#include "nvic_hw.h"
+#include "../mcu_hw.h"
 #include "nvic.h"
 
 void NVIC_init(void)

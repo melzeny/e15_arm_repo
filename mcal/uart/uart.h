@@ -13,6 +13,8 @@
 void UART_init(UART_ModNumType UartNo);
 void UART_enInterrupt(UART_ModNumType UartNo);
 void UART_diInterrupt(UART_ModNumType UartNo);
-void UART_startSending(UART_ModNumType UartNo);
+void UART_sendMsg(UART_ModNumType UartNo, uint8 Msg[], uint8 MsgLength);
+void UART_getReceivedMsg(UART_ModNumType UartNo, uint8 Msg[], uint8* MsgLengthPtr);
+
 #endif /* SRC_DEVICE_DRIVER_UART_UART_H_ */
 

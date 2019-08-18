@@ -9,7 +9,7 @@
 #define SRC_DEVICE_DRIVER_UART_UART_CFG_H_
 
 #define RX_BUFFER_MAX_SIZE                      50
-#define  SYSCTR_CLOCK_Hz                        8000000
+#define  SYSCTR_CLOCK_Hz                        16000000
 
 
 #define UART_PARITY_STICK                       STD_off
