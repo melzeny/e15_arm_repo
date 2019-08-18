@@ -291,25 +291,75 @@ typedef struct
     uint32 CC               ;
 }UART_RegType;
 
-#define UART1_DR_R              (*((volatile uint32 *)0x4000D000))
-#define UART1_RSR_R             (*((volatile uint32 *)0x4000D004))
-#define UART1_ECR_R             (*((volatile uint32 *)0x4000D004))
-#define UART1_FR                (*((volatile UART_FR_TAG *)0x4000D018))
-#define UART1_ILPR_R            (*((volatile uint32 *)0x4000D020))
-#define UART1_IBRD_R            (*((volatile uint32 *)0x4000D024))
-#define UART1_FBRD_R            (*((volatile uint32 *)0x4000D028))
-#define UART1_LCRH              (*((volatile UART_LCRH_TAG *)0x4000D02C))
-#define UART1_CTL               (*((volatile UART_CTL_TAG *)0x4000D030))
-#define UART1_IFLS_R            (*((volatile uint32 *)0x4000D034))
-#define UART1_IM                (*((volatile UART_INTERRUPT_TAG *)0x4000D038))
-#define UART1_RIS               (*((volatile UART_INTERRUPT_TAG *)0x4000D03C))
-#define UART1_MIS               (*((volatile UART_INTERRUPT_TAG *)0x4000D040))
-#define UART1_ICR               (*((volatile UART_INTERRUPT_TAG *)0x4000D044))
-#define UART1_DMACTL            (*((volatile UART_DMACTL_TAG *)0x4000D048))
-#define UART1_9BITADDR_R        (*((volatile uint32 *)0x4000D0A4))
-#define UART1_9BITAMASK_R       (*((volatile uint32 *)0x4000D0A8))
-#define UART1_PP_R              (*((volatile uint32 *)0x4000DFC0))
-#define UART1_CC_R              (*((volatile uint32 *)0x4000DFC8))
+#define UART1_DR_R                                 (*((volatile uint32 *)0x4000D000))
+#define UART1_RSR_R                                (*((volatile uint32 *)0x4000D004))
+#define UART1_ECR_R                                (*((volatile uint32 *)0x4000D004))
+#define UART1_FR                                   (*((volatile UART_FR_TAG *)0x4000D018))
+#define UART1_ILPR_R                               (*((volatile uint32 *)0x4000D020))
+#define UART1_IBRD_R                               (*((volatile uint32 *)0x4000D024))
+#define UART1_FBRD_R                               (*((volatile uint32 *)0x4000D028))
+#define UART1_LCRH                                 (*((volatile UART_LCRH_TAG *)0x4000D02C))
+#define UART1_CTL                                  (*((volatile UART_CTL_TAG *)0x4000D030))
+#define UART1_IFLS_R                               (*((volatile uint32 *)0x4000D034))
+#define UART1_IM                                   (*((volatile UART_INTERRUPT_TAG *)0x4000D038))
+#define UART1_RIS                                  (*((volatile UART_INTERRUPT_TAG *)0x4000D03C))
+#define UART1_MIS                                  (*((volatile UART_INTERRUPT_TAG *)0x4000D040))
+#define UART1_ICR                                  (*((volatile UART_INTERRUPT_TAG *)0x4000D044))
+#define UART1_DMACTL                               (*((volatile UART_DMACTL_TAG *)0x4000D048))
+#define UART1_9BITADDR_R                           (*((volatile uint32 *)0x4000D0A4))
+#define UART1_9BITAMASK_R                          (*((volatile uint32 *)0x4000D0A8))
+#define UART1_PP_R                                 (*((volatile uint32 *)0x4000DFC0))
+#define UART1_CC_R                                 (*((volatile uint32 *)0x4000DFC8))
+
+
+#define UARTDR_OFFSET                              0x000
+#define UARTRSR_OFFSET                             0x004
+#define UARTECR_OFFSET                             0x004
+#define UARTFR_OFFSET                              0x018
+#define UARTILPR_OFFSET                            0x020
+#define UARTIBRD_OFFSET                            0x024
+#define UARTFBRD_OFFSET                            0x028
+#define UARTLCRH_OFFSET                            0x02C
+#define UARTCTL_OFFSET                             0x030
+#define UARTIFLS_OFFSET                            0x034
+#define UARTIM_OFFSET                              0x038
+#define UARTRIS_OFFSET                             0x03C
+#define UARTMIS_OFFSET                             0x040
+#define UARTICR_OFFSET                             0x044
+#define UARTDMACTL_OFFSET                          0x048
+#define UART9BITADDR_OFFSET                        0x0A4
+#define UART9BITAMASK_OFFSET                       0x0A8
+#define UARTPP_OFFSET                              0xFC0
+#define UARTCC_OFFSET                              0xFC8
+
+#define UARTDR(UART_BASE_ADDR)                     GET_REG(UART_BASE_ADDR, uint32, UARTDR_OFFSET)
+#define UARTRSR(UART_BASE_ADDR)                    GET_REG(UART_BASE_ADDR, uint32, UARTRSR_OFFSET)
+#define UARTECR(UART_BASE_ADDR)                    GET_REG(UART_BASE_ADDR, uint32, UARTECR_OFFSET)
+#define UARTFR(UART_BASE_ADDR)                     GET_REG(UART_BASE_ADDR, UART_FR_TAG, UARTFR_OFFSET)
+#define UARTILPR(UART_BASE_ADDR)                   GET_REG(UART_BASE_ADDR, uint32, UARTILPR_OFFSET)
+#define UARTIBRD(UART_BASE_ADDR)                   GET_REG(UART_BASE_ADDR, uint32, UARTIBRD_OFFSET)
+#define UARTFBRD(UART_BASE_ADDR)                   GET_REG(UART_BASE_ADDR, uint32, UARTFBRD_OFFSET)
+#define UARTLCRH(UART_BASE_ADDR)                   GET_REG(UART_BASE_ADDR, UART_LCRH_TAG, UARTLCRH_OFFSET)
+#define UARTCTL(UART_BASE_ADDR)                    GET_REG(UART_BASE_ADDR, UART_CTL_TAG, UARTCTL_OFFSET)
+#define UARTIFLS(UART_BASE_ADDR)                   GET_REG(UART_BASE_ADDR, uint32, UARTIFLS_OFFSET)
+#define UARTIM(UART_BASE_ADDR)                     GET_REG(UART_BASE_ADDR, UART_INTERRUPT_TAG, UARTIM_OFFSET)
+#define UARTRIS(UART_BASE_ADDR)                    GET_REG(UART_BASE_ADDR, UART_INTERRUPT_TAG, UARTRIS_OFFSET)
+#define UARTMIS(UART_BASE_ADDR)                    GET_REG(UART_BASE_ADDR, UART_INTERRUPT_TAG, UARTMIS_OFFSET)
+#define UARTICR(UART_BASE_ADDR)                    GET_REG(UART_BASE_ADDR, UART_INTERRUPT_TAG, UARTICR_OFFSET)
+#define UARTDMACTL(UART_BASE_ADDR)                 GET_REG(UART_BASE_ADDR, UART_DMACTL_TAG, UARTDMACTL_OFFSET)
+#define UART9BITADDR(UART_BASE_ADDR)               GET_REG(UART_BASE_ADDR, uint32, UART9BITADDR_OFFSET)
+#define UART9BITAMASK(UART_BASE_ADDR)              GET_REG(UART_BASE_ADDR, uint32, UART9BITAMASK_OFFSET)
+#define UARTPP(UART_BASE_ADDR)                     GET_REG(UART_BASE_ADDR, uint32, UARTPP_OFFSET)
+#define UARTCC(UART_BASE_ADDR)                     GET_REG(UART_BASE_ADDR, uint32, UARTCC_OFFSET)
+
+#define UART0_BASE_ADDR                            0x4000C000
+#define UART1_BASE_ADDR                            0x4000D000
+#define UART2_BASE_ADDR                            0x4000E000
+#define UART3_BASE_ADDR                            0x4000F000
+#define UART4_BASE_ADDR                            0x40010000
+#define UART5_BASE_ADDR                            0x40011000
+#define UART6_BASE_ADDR                            0x40012000
+#define UART7_BASE_ADDR                            0x40013000
 
 /*===========================================================*
  * SPI REGISTERS                                            *
