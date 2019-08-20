@@ -9,6 +9,7 @@
 #define E15_ARM_REPO_MCAL_PORT_DRIVER_PORT_HW_H_
 
 #include "../utils/STD_Types.h"
+#include "../utils/Bit_Math.h"
 
 /*===========================================================*
  * NVIC REGISTERS                                            *
@@ -362,12 +363,8 @@ typedef struct
 #define UART7_BASE_ADDR                            0x40013000
 
 /*===========================================================*
- * SPI REGISTERS                                            *
+ * SPI REGISTERS                                             *
  *========================================================== */
-#define SPI0_BASE_ADDR             ( (volatile SPI_RegType* const )0x40008000)
-#define SPI1_BASE_ADDR             ( (volatile SPI_RegType* const )0x40009000)
-#define SPI2_BASE_ADDR             ( (volatile SPI_RegType* const )0x4000A000)
-#define SPI3_BASE_ADDR             ( (volatile SPI_RegType* const )0x4000B000)
 
 typedef union
 {
@@ -480,33 +477,110 @@ typedef union
     }B;
 }SPI_SSIDMACTL_TAG;
 
+
+#define SSICR0_OFFSET                       0x000
+#define SSICR1_OFFSET                       0x004
+#define SSIDR_OFFSET                        0x008
+#define SSISR_OFFSET                        0x00C
+#define SSICPSR_OFFSET                      0x010
+#define SSIIM_OFFSET                        0x014
+#define SSIRIS_OFFSET                       0x018
+#define SSIMIS_OFFSET                       0x01C
+#define SSIICR_OFFSET                       0x020
+#define SSIDMACTL_OFFSET                    0x024
+#define SSICC_OFFSET                        0xFC8
+
+#define SPI0_BASE_ADDR                      0x40008000
+#define SPI1_BASE_ADDR                      0x40009000
+#define SPI2_BASE_ADDR                      0x4000A000
+#define SPI3_BASE_ADDR                      0x4000B000
+
+#define SSICR0(SPI_BASE_ADDR)               GET_REG(SPI_BASE_ADDR, SPI_SSICR0_TAG, SSICR0_OFFSET)
+#define SSICR1(SPI_BASE_ADDR)               GET_REG(SPI_BASE_ADDR, SPI_SSICR1_TAG, SSICR1_OFFSET)
+#define SSIDR(SPI_BASE_ADDR)                GET_REG(SPI_BASE_ADDR, uint32, SSIDR_OFFSET)
+#define SSISR(SPI_BASE_ADDR)                GET_REG(SPI_BASE_ADDR, SPI_SSISR_TAG, SSISR_OFFSET)
+#define SSICPSR(SPI_BASE_ADDR)              GET_REG(SPI_BASE_ADDR, uint32, SSICPSR_OFFSET)
+#define SSIIM(SPI_BASE_ADDR)                GET_REG(SPI_BASE_ADDR, SPI_SSIIM_TAG, SSIIM_OFFSET)
+#define SSIRIS(SPI_BASE_ADDR)               GET_REG(SPI_BASE_ADDR, SPI_SSIRIS_TAG, SSIRIS_OFFSET)
+#define SSIMIS(SPI_BASE_ADDR)               GET_REG(SPI_BASE_ADDR, SPI_SSIMIS_TAG, SSIMIS_OFFSET)
+#define SSIICR(SPI_BASE_ADDR)               GET_REG(SPI_BASE_ADDR, SPI_SSIICR_TAG, SSIICR_OFFSET)
+#define SSIDMACTL(SPI_BASE_ADDR)            GET_REG(SPI_BASE_ADDR, SPI_SSIDMACTL_TAG, SSIDMACTL_OFFSET)
+#define SSICC(SPI_BASE_ADDR)                GET_REG(SPI_BASE_ADDR, uint32, SSICC_OFFSET)
+
+
+/*===========================================================*
+ * I2C REGISTERS                                             *
+ *========================================================== */
+ 
 typedef struct
 {
-    SPI_SSICR0_TAG SSICR0           ;
-    SPI_SSICR1_TAG SSICR1           ;
-    uint32 SSIDR                    ;
-    SPI_SSISR_TAG SSISR             ;
-    uint32 SSICPSR                  ;
-    SPI_SSIIM_TAG SSIIM             ;
-    SPI_SSIRIS_TAG SSIRIS           ;
-    SPI_SSIMIS_TAG SSIMIS           ;
-    SPI_SSIICR_TAG SSIICR           ;
-    SPI_SSIDMACTL_TAG SSIDMACTL     ;
-    uint8  reserved[0xFA0]            ;
-    uint32 SSICC                    ;
-    uint32 SSIPeriphID4             ;
-    uint32 SSIPeriphID5             ;
-    uint32 SSIPeriphID6             ;
-    uint32 SSIPeriphID7             ;
-    uint32 SSIPeriphID0             ;
-    uint32 SSIPeriphID1             ;
-    uint32 SSIPeriphID2             ;
-    uint32 SSIPeriphID3             ;
-    uint32 SSIPCellID0              ;
-    uint32 SSIPCellID1              ;
-    uint32 SSIPCellID2              ;
-    uint32 SSIPCellID3              ;
+	uint32 RCLKTO_WHS          :1;
+	uint32 RBUSBSY_WACK        :1;
+	uint32 RIDLE_WSTOP         :1;
+	uint32 RARBLST_WSTART      :1;
+	uint32 RDATACK_WRUN        :1;
+	uint32 RADRACK             :1;
+	uint32 RERROR              :1;
+	uint32 RBUSY               :1;
+	uint32                    :24;
+}I2C_I2CMCS_TAG;
 
-}SPI_RegType ;
+
+
+
+
+#define I2CMSA_OFFSET                              0x000
+#define I2CMCS_OFFSET                              0x004
+#define I2CMDR_OFFSET                              0x008
+#define I2CMTPR_OFFSET                             0x00C
+#define I2CMIMR_OFFSET                             0x010
+#define I2CMRIS_OFFSET                             0x014
+#define I2CMMIS_OFFSET                             0x018
+#define I2CMICR_OFFSET                             0x01C
+#define I2CMCR_OFFSET                              0x020
+#define I2CMCLKOCNT_OFFSET                         0x024
+#define I2CMBMON_OFFSET                            0x02C
+#define I2CMCR2_OFFSET                             0x038
+#define I2CSOAR_OFFSET                             0x800
+#define I2CSCSR_OFFSET                             0x804
+#define I2CSDR_OFFSET                              0x808
+#define I2CSIMR_OFFSET                             0x80C
+#define I2CSRIS_OFFSET                             0x810
+#define I2CSMIS_OFFSET                             0x814
+#define I2CSICR_OFFSET                             0x818
+#define I2CSOAR2_OFFSET                            0x81C
+#define I2CSACKCTL_OFFSET                          0x820
+#define I2CPP_OFFSET                               0xFC0
+#define I2CPC_OFFSET                               0xFC4
+
+#define I2C_0_BASE_ADDRESS                         0x40020000
+#define I2C_1_BASE_ADDRESS                         0x40021000
+#define I2C_2_BASE_ADDRESS                         0x40022000
+#define I2C_3_BASE_ADDRESS                         0x40023000
+
+#define I2CMSA(I2C_BASE_ADDR)                      GET_REG(I2C_BASE_ADDR, uint32, I2CMSA_OFFSET)
+#define I2CMCS(I2C_BASE_ADDR)                      GET_REG(I2C_BASE_ADDR, I2C_I2CMCS_TAG, I2CMCS_OFFSET)
+#define I2CMDR(I2C_BASE_ADDR)                      GET_REG(I2C_BASE_ADDR, uint32, I2CMDR_OFFSET)
+#define I2CMTPR(I2C_BASE_ADDR)                     GET_REG(I2C_BASE_ADDR, uint32, I2CMTPR_OFFSET)
+#define I2CMIMR(I2C_BASE_ADDR)                     GET_REG(I2C_BASE_ADDR, uint32, I2CMIMR_OFFSET)
+#define I2CMRIS(I2C_BASE_ADDR)                     GET_REG(I2C_BASE_ADDR, uint32, I2CMRIS_OFFSET)
+#define I2CMMIS(I2C_BASE_ADDR)                     GET_REG(I2C_BASE_ADDR, uint32, I2CMMIS_OFFSET)
+#define I2CMICR(I2C_BASE_ADDR)                     GET_REG(I2C_BASE_ADDR, uint32, I2CMICR_OFFSET)
+#define I2CMCR(I2C_BASE_ADDR)                      GET_REG(I2C_BASE_ADDR, uint32, I2CMCR_OFFSET)
+#define I2CMCLKOCNT(I2C_BASE_ADDR)                 GET_REG(I2C_BASE_ADDR, uint32, I2CMCLKOCNT_OFFSET)
+#define I2CMBMON(I2C_BASE_ADDR)                    GET_REG(I2C_BASE_ADDR, uint32, I2CMBMON_OFFSET)
+#define I2CMCR2(I2C_BASE_ADDR)                     GET_REG(I2C_BASE_ADDR, uint32, I2CMCR2_OFFSET)
+#define I2CSOAR(I2C_BASE_ADDR)                     GET_REG(I2C_BASE_ADDR, uint32, I2CSOAR_OFFSET)
+#define I2CSCSR(I2C_BASE_ADDR)                     GET_REG(I2C_BASE_ADDR, uint32, I2CSCSR_OFFSET)
+#define I2CSDR(I2C_BASE_ADDR)                      GET_REG(I2C_BASE_ADDR, uint32, I2CSDR_OFFSET)
+#define I2CSIMR(I2C_BASE_ADDR)                     GET_REG(I2C_BASE_ADDR, uint32, I2CSIMR_OFFSET)
+#define I2CSRIS(I2C_BASE_ADDR)                     GET_REG(I2C_BASE_ADDR, uint32, I2CSRIS_OFFSET)
+#define I2CSMIS(I2C_BASE_ADDR)                     GET_REG(I2C_BASE_ADDR, uint32, I2CSMIS_OFFSET)
+#define I2CSICR(I2C_BASE_ADDR)                     GET_REG(I2C_BASE_ADDR, uint32, I2CSICR_OFFSET)
+#define I2CSOAR2(I2C_BASE_ADDR)                    GET_REG(I2C_BASE_ADDR, uint32, I2CSOAR2_OFFSET)
+#define I2CSACKCTL (I2C_BASE_ADDR)                 GET_REG(I2C_BASE_ADDR, uint32, I2CSACKCTL_OFFSET)
+#define I2CPP(I2C_BASE_ADDR)                       GET_REG(I2C_BASE_ADDR, uint32, I2CPP_OFFSET)
+#define I2CPC(I2C_BASE_ADDR)                       GET_REG(I2C_BASE_ADDR, uint32, I2CPC_OFFSET)
+
 
 #endif /* E15_ARM_REPO_MCAL_PORT_DRIVER_PORT_HW_H_ */

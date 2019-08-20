@@ -44,10 +44,12 @@ typedef enum
     true=!false
 }boolean;
 
+typedef enum
+{
+    DISABLE,
+    ENABLE
+}STD_EnType;
 typedef void(*Ptr2FuncType)(void);
-
-#define DISABLE         0
-#define ENABLE          1
 
 
 

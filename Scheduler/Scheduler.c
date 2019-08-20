@@ -20,7 +20,7 @@
 /*========================================
  * LOCAL PROTOTYPES FUNCTIONS
  * ======================================*/
-inline static void Scheduler(void);
+
 
 /*========================================
  * STATIC VARIABLE
