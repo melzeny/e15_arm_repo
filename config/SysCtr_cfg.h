@@ -16,14 +16,19 @@
 #define SYSCTR_RCC_GPIO_PORTE               ENABLE
 #define SYSCTR_RCC_GPIO_PORTF               ENABLE
 
-#define SYSCTR_RCC_GPIO_UART0               DISABLE
-#define SYSCTR_RCC_GPIO_UART1               ENABLE
-#define SYSCTR_RCC_GPIO_UART2               DISABLE
-#define SYSCTR_RCC_GPIO_UART3               DISABLE
-#define SYSCTR_RCC_GPIO_UART4               DISABLE
-#define SYSCTR_RCC_GPIO_UART5               DISABLE
-#define SYSCTR_RCC_GPIO_UART6               DISABLE
-#define SYSCTR_RCC_GPIO_UART7               DISABLE
+#define SYSCTR_RCC_UART0                    DISABLE
+#define SYSCTR_RCC_UART1                    ENABLE
+#define SYSCTR_RCC_UART2                    DISABLE
+#define SYSCTR_RCC_UART3                    DISABLE
+#define SYSCTR_RCC_UART4                    DISABLE
+#define SYSCTR_RCC_UART5                    DISABLE
+#define SYSCTR_RCC_UART6                    DISABLE
+#define SYSCTR_RCC_UART7                    DISABLE
+
+#define SYSCTR_RCC_SSI0                     DISABLE
+#define SYSCTR_RCC_SSI1                     DISABLE
+#define SYSCTR_RCC_SSI2                     ENABLE
+#define SYSCTR_RCC_SSI3                     DISABLE
 
 
 

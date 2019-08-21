@@ -170,6 +170,8 @@ typedef struct
 
 #define RCGCGPIO_REG    (*((volatile RCGC_TagType*)0x400FE608))
 #define RCGCUART_REG    (*((volatile RCGC_TagType*)0x400FE618))
+#define RCGCSSI_REG     (*((volatile RCGC_TagType*)0x400FE61C))
+
 
 
 /*===========================================================*

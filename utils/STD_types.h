@@ -49,6 +49,12 @@ typedef enum
     DISABLE,
     ENABLE
 }STD_EnType;
+
+typedef enum
+{
+    E_OK,
+    E_NOT_OK
+}Std_ReturnType;
 typedef void(*Ptr2FuncType)(void);
 
 

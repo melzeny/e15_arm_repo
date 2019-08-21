@@ -7,8 +7,8 @@
 
 void lab_03_spi(void)
 {
-
-
+    SysCtr_init();
+    Spi_init();
 
 
 }

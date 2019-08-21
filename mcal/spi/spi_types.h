@@ -5,16 +5,16 @@
  *      Author: Muhammad.Elzeiny
  */
 
-#ifndef E15_ARM_REPO_MCAL_SPI_SPI_TYPES_H_
-#define E15_ARM_REPO_MCAL_SPI_SPI_TYPES_H_
+#ifndef E15_ARM_REPO_MCAL_Spi_Spi_TYPES_H_
+#define E15_ARM_REPO_MCAL_Spi_Spi_TYPES_H_
 
 typedef enum
 {
-    SPI_Num_0,
-    SPI_Num_1,
-    SPI_Num_2,
-    SPI_Num_3
-}SPI_ModNumType;
+    Spi_Channel0,
+    Spi_Channel1,
+    Spi_Channel2,
+    Spi_Channel3
+}Spi_ChannelType;
 
 
 /*========================================================*
@@ -25,67 +25,77 @@ typedef enum
 
 typedef enum
 {
-    SPI_FrameFormate_FreeScale,
-    SPI_FrameFormate_Ti,
-    SPI_FrameFormate_Microwire
+    SPI_UNINIT,
+    SPI_IDLE,
+    SPI_BUSY
+}Spi_StatusType;
 
-}SPI_FrameFormateType;
+typedef enum
+{
+    Spi_FrameFormate_FreeScale,
+    Spi_FrameFormate_Ti,
+    Spi_FrameFormate_Microwire
+}Spi_FrameFormateType;
 
 
 typedef enum
 {
 
-    SPI_DataSize_04_Bits,
-    SPI_DataSize_05_Bits,
-    SPI_DataSize_06_Bits,
-    SPI_DataSize_07_Bits,
-    SPI_DataSize_08_Bits,
-    SPI_DataSize_09_Bits,
-    SPI_DataSize_10_Bits,
-    SPI_DataSize_11_Bits,
-    SPI_DataSize_12_Bits,
-    SPI_DataSize_13_Bits,
-    SPI_DataSize_14_Bits,
-    SPI_DataSize_15_Bits,
-    SPI_DataSize_16_Bits
+    Spi_NumberOfData_04_Bits = 0X3,
+    Spi_NumberOfData_05_Bits,
+    Spi_NumberOfData_06_Bits,
+    Spi_NumberOfData_07_Bits,
+    Spi_NumberOfData_08_Bits,
+    Spi_NumberOfData_09_Bits,
+    Spi_NumberOfData_10_Bits,
+    Spi_NumberOfData_11_Bits,
+    Spi_NumberOfData_12_Bits,
+    Spi_NumberOfData_13_Bits,
+    Spi_NumberOfData_14_Bits,
+    Spi_NumberOfData_15_Bits,
+    Spi_NumberOfData_16_Bits
 
-}SPI_DataSizeType;
-
-typedef enum
-{
-    SPI_OprMode_Master,
-    SPI_OprMode_Slave
-
-}SPI_OprModeType;
-
+}Spi_NumberOfDataType;
 
 typedef enum
 {
-    SPI_ClockSource_SysClock,
-    SPI_ClockSource_PIOSC
+    Spi_OprMode_Master,
+    Spi_OprMode_Slave
 
-}SPI_ClockSourceType;
+}Spi_OprModeType;
 
+
+typedef enum
+{
+    Spi_ClockSource_SysClock,
+    Spi_ClockSource_PIOSC = 0x5,
+
+}Spi_ClockSourceType;
+typedef enum
+{
+    Spi_DataCaptureClockEdge_First,
+    Spi_DataCaptureClockEdge_Second,
+}Spi_DataCaptureClockEdgeType;
 typedef struct
 {
-    SPI_ModNumType              SPI_ModNum;
-    uint32                      CFG_BitRate;
-    STD_EnType                  CFG_DataCapturedOnFirstEdge;
-    STD_levelType               CFG_IdleCLockState;
-    SPI_FrameFormateType        CFG_FrameFormat;
-    SPI_DataSizeType            CFG_DataSize;
-    SPI_OprModeType             CFG_OprMode;
-    STD_EnType                  CFG_LoopBack;
-    STD_EnType                  CFG_DMA_Tx;
-    STD_EnType                  CFG_DMA_Rx;
-    SPI_ClockSourceType         CFG_ClockSource;
-    STD_EnType                  CFG_Fifo;
-    STD_EnType                  CFG_Interrupt_RxOverRun;
-    STD_EnType                  CFG_Interrupt_RxTimeout;
-    STD_EnType                  CFG_Interrupt_Rxc;
-    STD_EnType                  CFG_Interrupt_Txc;
-}SPI_cfgType;
+    Spi_ChannelType                 Spi_Channel;
+    uint32                          CFG_BitRate;
+    Spi_DataCaptureClockEdgeType    CFG_DataCaptureClockEdge;
+    STD_levelType                   CFG_IdleCLockState;
+    Spi_FrameFormateType            CFG_FrameFormat;
+    Spi_NumberOfDataType            CFG_DataSize;
+    Spi_OprModeType                 CFG_OprMode;
+    STD_EnType                      CFG_LoopBack;
+    STD_EnType                      CFG_DMA_Tx;
+    STD_EnType                      CFG_DMA_Rx;
+    Spi_ClockSourceType             CFG_ClockSource;
+    STD_EnType                      CFG_Fifo;
+    STD_EnType                      CFG_Interrupt_RxOverRun;
+    STD_EnType                      CFG_Interrupt_RxTimeout;
+    STD_EnType                      CFG_Interrupt_Rxc;
+    STD_EnType                      CFG_Interrupt_Txc;
+}Spi_ConfigType;
 
-#endif /* ifdef SPI_DRIVER */
+#endif /* ifdef Spi_DRIVER */
 
-#endif /* E15_ARM_REPO_MCAL_SPI_SPI_TYPES_H_ */
+#endif /* E15_ARM_REPO_MCAL_Spi_Spi_TYPES_H_ */
