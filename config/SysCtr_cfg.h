@@ -17,7 +17,7 @@
 #define SYSCTR_RCC_GPIO_PORTF               ENABLE
 
 #define SYSCTR_RCC_UART0                    DISABLE
-#define SYSCTR_RCC_UART1                    ENABLE
+#define SYSCTR_RCC_UART1                    DISABLE
 #define SYSCTR_RCC_UART2                    DISABLE
 #define SYSCTR_RCC_UART3                    DISABLE
 #define SYSCTR_RCC_UART4                    DISABLE
@@ -25,10 +25,10 @@
 #define SYSCTR_RCC_UART6                    DISABLE
 #define SYSCTR_RCC_UART7                    DISABLE
 
-#define SYSCTR_RCC_SSI0                     DISABLE
+#define SYSCTR_RCC_SSI0                     ENABLE
 #define SYSCTR_RCC_SSI1                     DISABLE
-#define SYSCTR_RCC_SSI2                     ENABLE
-#define SYSCTR_RCC_SSI3                     DISABLE
+#define SYSCTR_RCC_SSI2                     DISABLE
+#define SYSCTR_RCC_SSI3                     ENABLE
 
 
 

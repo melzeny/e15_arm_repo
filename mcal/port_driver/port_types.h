@@ -8,9 +8,11 @@
 #ifndef E15_ARM_REPO_MCAL_PORT_DRIVER_PORT_TYPES_H_
 #define E15_ARM_REPO_MCAL_PORT_DRIVER_PORT_TYPES_H_
 
-#define PORT_MODE_PIN_X_DIO              0
-#define PORT_MODE_PIN_B0_U1RX            1
-#define PORT_MODE_PIN_B1_U1TX            1
+#define PORT_MODE_PIN_X_DIO                 0
+
+#define PORT_MODE_PIN_B0_U1RX               1
+#define PORT_MODE_PIN_B1_U1TX               1
+
 #define PORT_MODE_PIN_A2_SSI0Clk            2
 #define PORT_MODE_PIN_A3_SSI0Fss            2
 #define PORT_MODE_PIN_A4_SSI0Rx             2

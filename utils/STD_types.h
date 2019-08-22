@@ -46,8 +46,8 @@ typedef enum
 
 typedef enum
 {
-    DISABLE,
-    ENABLE
+    DISABLE=0,
+    ENABLE=1
 }STD_EnType;
 
 typedef enum

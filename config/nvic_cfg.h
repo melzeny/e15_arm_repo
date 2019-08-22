@@ -19,7 +19,7 @@
 #define GPIO_PORTF_NVIC     DISABLE ;
 
 #define UART0_NVIC          DISABLE ;
-#define UART1_NVIC          ENABLE ;
+#define UART1_NVIC          DISABLE ;
 #define UART2_NVIC          DISABLE ;
 #define UART3_NVIC          DISABLE ;
 #define UART4_NVIC          DISABLE ;
@@ -27,10 +27,10 @@
 #define UART6_NVIC          DISABLE ;
 #define UART7_NVIC          DISABLE ;
 
-#define SPI0_NVIC           DISABLE ;
+#define SPI0_NVIC           ENABLE ;
 #define SPI1_NVIC           DISABLE ;
 #define SPI2_NVIC           DISABLE ;
-#define SPI3_NVIC           DISABLE ;
+#define SPI3_NVIC           ENABLE ;
 
 #define I2C0_NVIC           DISABLE ;
 #define I2C1_NVIC           DISABLE ;

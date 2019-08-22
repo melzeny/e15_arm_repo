@@ -15,7 +15,12 @@ typedef enum
     Spi_Channel2,
     Spi_Channel3
 }Spi_ChannelType;
-
+typedef enum
+{
+    SPI_UNINIT,
+    SPI_IDLE,
+    SPI_BUSY
+}Spi_StatusType;
 
 /*========================================================*
  *      PRIVATE TYPES                                     *
@@ -23,12 +28,7 @@ typedef enum
 
 #ifdef SPI_PRIVATE_CONFIG
 
-typedef enum
-{
-    SPI_UNINIT,
-    SPI_IDLE,
-    SPI_BUSY
-}Spi_StatusType;
+
 
 typedef enum
 {
@@ -76,6 +76,11 @@ typedef enum
     Spi_DataCaptureClockEdge_First,
     Spi_DataCaptureClockEdge_Second,
 }Spi_DataCaptureClockEdgeType;
+typedef enum
+{
+    FIFOBasedInterrupt, /*interrupt indicates that the transmit FIFO is half full or less.*/
+    EndOfTxInterrupt, /*The End of Transmit interrupt */
+}Spi_TxIntType;
 typedef struct
 {
     Spi_ChannelType                 Spi_Channel;
@@ -89,12 +94,22 @@ typedef struct
     STD_EnType                      CFG_DMA_Tx;
     STD_EnType                      CFG_DMA_Rx;
     Spi_ClockSourceType             CFG_ClockSource;
-    STD_EnType                      CFG_Fifo;
+    Spi_TxIntType                   CFG_TxIntMode;
     STD_EnType                      CFG_Interrupt_RxOverRun;
     STD_EnType                      CFG_Interrupt_RxTimeout;
     STD_EnType                      CFG_Interrupt_Rxc;
     STD_EnType                      CFG_Interrupt_Txc;
 }Spi_ConfigType;
+
+typedef struct
+{
+    uint32 TxMsgSize;
+    uint16 TxBuffer[Spi_TX_BUFFER_SIZE];
+    uint32 TxBufferIndex;
+    uint16 RxBuffer[Spi_RX_BUFFER_SIZE];
+    uint32 RxBufferIndex;
+    Spi_StatusType Status;
+}Spi_ChannelParamType;
 
 #endif /* ifdef Spi_DRIVER */
 

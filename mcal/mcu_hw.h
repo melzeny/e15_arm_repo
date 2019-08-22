@@ -51,7 +51,6 @@ typedef struct
     uint32 B29:1;
     uint32 B30:1;
     uint32 B31:1;
-    uint32 B32:1;
 }bit_field_Type;
 
 
