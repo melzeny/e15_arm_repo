@@ -170,6 +170,7 @@ typedef struct
 #define RCGCGPIO_REG    (*((volatile RCGC_TagType*)0x400FE608))
 #define RCGCUART_REG    (*((volatile RCGC_TagType*)0x400FE618))
 #define RCGCSSI_REG     (*((volatile RCGC_TagType*)0x400FE61C))
+#define RCGCI2C_REG     (*((volatile RCGC_TagType*)0x400FE620))
 
 
 
@@ -372,7 +373,7 @@ typedef union
     uint32 R;
     struct
     {
-        uint32 DDS        :4        ;
+        uint32 DSS        :4        ;
         uint32 FRF        :2        ;
         uint32 SPO        :1        ;
         uint32 SPH        :1        ;

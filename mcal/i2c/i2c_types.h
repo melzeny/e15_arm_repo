@@ -12,11 +12,11 @@
 
 typedef enum
 {
-    I2C_0,
-    I2C_1,
-    I2C_2,
-    I2C_3,
-}I2C_ModNumType;
+    I2c_Channel0,
+    I2c_Channel1,
+    I2c_Channel2,
+    I2c_Channel3,
+}I2c_ChannelType;
 
 #ifdef I2C_PRIVATE_CONFIG
 
@@ -31,34 +31,34 @@ typedef enum
     GlitchFilter_PW_16_Clocks,
     GlitchFilter_PW_31_Clocks,
 
-}I2C_GlitchFilterPwType;
+}I2c_GlitchFilterPwType;
 
 typedef struct
 {
-    I2C_ModNumType                  I2cNum;
+    I2c_ChannelType                 I2cChannel;
     uint32                          ClockRate;
     STD_EnType                      MasterHighSpeed;
     STD_EnType                      ClockHighSpeed;
     STD_EnType                      AutoDataAck;
     STD_EnType                      GlitchFilter;
-    I2C_GlitchFilterPwType          GlitchFilter_PulseWidth;
+    I2c_GlitchFilterPwType          GlitchFilter_PulseWidth;
     STD_EnType                      LoopbackTest;
     STD_EnType                      FIfo;
     STD_EnType                      Interrupt_Master;
     STD_EnType                      Interrupt_ClkTimeout;
-}I2C_Master_cfgType;
+}I2c_MasterConfigType;
 
 typedef struct
 {
-    I2C_ModNumType                  I2cNum;
+    I2c_ChannelType                 I2cChannel;
     uint32                          SlaveAddr;
     STD_EnType                      ALtSlaveAdrr_EN;
     uint32                          ALtSlaveAdrr;
     STD_EnType                      Slave_HighSpeed;
     STD_EnType                      Interrupt_STO;
-    I2C_GlitchFilterPwType          Interrupt_STA;
+    I2c_GlitchFilterPwType          Interrupt_STA;
     STD_EnType                      Interrupt_Rxc;
-}I2C_Slave_cfgType;
+}I2c_SlaveConfigType;
 
 #endif
 

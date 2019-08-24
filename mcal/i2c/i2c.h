@@ -5,17 +5,33 @@
  *      Author: Muhammad.Elzeiny
  */
 
-#ifndef E15_ARM_REPO_MCAL_I2C_I2C_H_
-#define E15_ARM_REPO_MCAL_I2C_I2C_H_
+#ifndef E15_ARM_REPO_MCAL_I2c_I2c_H_
+#define E15_ARM_REPO_MCAL_I2c_I2c_H_
 
 #include "../../utils/STD_Types.h"
 #include "i2c_types.h"
 
-void I2C_init(void);
-void I2C_enInterrupt(I2C_ModNumType I2cNo);
-void I2C_diInterrupt(I2C_ModNumType I2cNo);
-void I2C_sendMsg(I2C_ModNumType I2cNo, uint8 Msg[], uint8 MsgLength);
-void I2C_getReceivedMsg(I2C_ModNumType I2cNo, uint8 Msg[], uint8* MsgLengthPtr);
+void I2c_init(void);
+void I2c_enInterrupt(I2c_ChannelType I2cNo);
+void I2c_diInterrupt(I2c_ChannelType I2cNo);
+
+/*=================================================================================
+ * NAME:        I2c_WriteIB
+ * DESCRIBTION: The Function shall take over the given parame-ters,
+ * and save the pointed data to the internal buffer defined with the function
+ * =================================================================================*/
+Std_ReturnType I2c_WriteIB( I2c_ChannelType Channel, const uint8* DataBufferPtr,uint8 DataBufferSize);
+
+/* =================================================================================
+ * NAME:          I2c_ReadIB
+ * DESCRIBTION:   The function I2c_ReadIB provides the service
+ * for reading synchronously one or more data from an IB
+ * =================================================================================*/
+Std_ReturnType I2c_ReadIB( I2c_ChannelType Channel, uint8* DataBufferPointer, uint8* DataBufferSizePtr );
 
 
-#endif /* E15_ARM_REPO_MCAL_I2C_I2C_H_ */
+Std_ReturnType I2c_AsyncTransmit(I2c_ChannelType Channel);
+Std_ReturnType I2c_SyncTransmit(I2c_ChannelType Channel);
+
+
+#endif /* E15_ARM_REPO_MCAL_I2c_I2c_H_ */

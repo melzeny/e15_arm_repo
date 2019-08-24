@@ -32,8 +32,8 @@
 #define SPI2_NVIC           DISABLE ;
 #define SPI3_NVIC           ENABLE ;
 
-#define I2C0_NVIC           DISABLE ;
-#define I2C1_NVIC           DISABLE ;
+#define I2C0_NVIC           ENABLE ;
+#define I2C1_NVIC           ENABLE ;
 #define I2C2_NVIC           DISABLE ;
 #define I2C3_NVIC           DISABLE ;
 

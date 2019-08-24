@@ -38,6 +38,17 @@
 #define PORT_MODE_PIN_F2_SSI1Rx             2
 #define PORT_MODE_PIN_F3_SSI1Tx             2
 
+#define PORT_MODE_PIN_B2_I2C0SCL            3
+#define PORT_MODE_PIN_B3_I2C0SDA            3
+
+#define PORT_MODE_PIN_A6_I2C1SCL            3
+#define PORT_MODE_PIN_A7_I2C1SDA            3
+
+#define PORT_MODE_PIN_E4_I2C2SCL            3
+#define PORT_MODE_PIN_E5_I2C2SDA            3
+
+#define PORT_MODE_PIN_D0_I2C3SCL            3
+#define PORT_MODE_PIN_D1_I2C3SDA            3
 
 #include "../../utils/STD_Types.h"
 typedef enum
