@@ -30,8 +30,14 @@ Std_ReturnType I2c_WriteIB( I2c_ChannelType Channel, const uint8* DataBufferPtr,
 Std_ReturnType I2c_ReadIB( I2c_ChannelType Channel, uint8* DataBufferPointer, uint8* DataBufferSizePtr );
 
 
-Std_ReturnType I2c_AsyncTransmit(I2c_ChannelType Channel);
-Std_ReturnType I2c_SyncTransmit(I2c_ChannelType Channel);
+Std_ReturnType I2c_AsyncRequest(I2c_ChannelType Channel,
+                                 uint32 SLA,
+                                 I2c_RequestType Request,
+                                 uint8 MsgSize);
+Std_ReturnType I2c_SyncRequest(I2c_ChannelType Channel,
+                                uint32 SLA,
+                                I2c_RequestType Request,
+                                uint8 MsgSize);
 
 
 #endif /* E15_ARM_REPO_MCAL_I2c_I2c_H_ */

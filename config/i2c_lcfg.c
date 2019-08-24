@@ -13,8 +13,11 @@
  * INCLUDES
  * ==============================================*/
 #include "../utils/STD_types.h"
-#include "../mcal/i2c/i2c_types.h"
 #include "i2c_cfg.h"
+#include "../mcal/i2c/i2c_types.h"
+
+
+
 
 
 /*================================================*

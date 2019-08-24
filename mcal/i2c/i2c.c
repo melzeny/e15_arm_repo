@@ -8,6 +8,7 @@
  * DEFINES
  * ==============================================*/
 #define I2C_PRIVATE_CONFIG
+#define I2C_NUM_OF_CHANNEL              4
 /*================================================*
  * INCLUDES
  * ==============================================*/
@@ -15,8 +16,8 @@
 #include "../../utils/STD_Types.h"
 #include "../mcu_hw.h"
 
-#include "i2c_types.h"
 #include "../../config/i2c_cfg.h"
+#include "i2c_types.h"
 #include "i2c.h"
 
 /*================================================*
@@ -29,7 +30,7 @@ extern const I2c_SlaveConfigType I2C_Slave_CfgArr[];
  * LOCAL VARIABLES
  * ==============================================*/
 static const uint32 I2c_BaseAddrArr[] = {I2C_0_BASE_ADDRESS, I2C_1_BASE_ADDRESS, I2C_2_BASE_ADDRESS, I2C_3_BASE_ADDRESS};
-
+static I2c_ChannelParamType I2c_ChannelParam[I2C_NUM_OF_CHANNEL];
 /*================================================*
  * LOCAL FUNCTIONS
  * ==============================================*/
@@ -65,7 +66,9 @@ void I2c_diInterrupt(I2c_ChannelType Channel)
  * =================================================================================*/
 Std_ReturnType I2c_WriteIB( I2c_ChannelType Channel, const uint8* DataBufferPtr,uint8 DataBufferSize)
 {
+    Std_ReturnType  ret = E_OK;
 
+    return ret;
 
 }
 
@@ -81,14 +84,20 @@ Std_ReturnType I2c_ReadIB( I2c_ChannelType Channel, uint8* DataBufferPointer, ui
     return ret;
 }
 
-Std_ReturnType I2c_AsyncTransmit(I2c_ChannelType Channel)
+Std_ReturnType I2c_AsyncRequest(I2c_ChannelType Channel,
+                                uint32 SLA,
+                                I2c_RequestType Request,
+                                uint8 MsgSize)
 {
     Std_ReturnType  ret = E_OK;
 
 
     return ret;
 }
-Std_ReturnType I2c_SyncTransmit(I2c_ChannelType Channel)
+Std_ReturnType I2c_SyncRequest(I2c_ChannelType Channel,
+                               uint32 SLA,
+                               I2c_RequestType Request,
+                               uint8 MsgSize)
 {
     Std_ReturnType  ret = E_OK;
 

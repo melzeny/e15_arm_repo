@@ -8,6 +8,20 @@
 #ifndef E15_ARM_REPO_MCAL_I2C_I2C_TYPES_H_
 #define E15_ARM_REPO_MCAL_I2C_I2C_TYPES_H_
 
+#include "../../utils/STD_types.h"
+
+typedef enum
+{
+    I2c_uiInit,
+    I2c_idle,
+    I2c_busy
+}I2c_StatusType;
+
+typedef enum
+{
+    I2c_Request_Write,
+    I2c_Request_Read
+}I2c_RequestType;
 
 
 typedef enum
@@ -19,7 +33,6 @@ typedef enum
 }I2c_ChannelType;
 
 #ifdef I2C_PRIVATE_CONFIG
-
 typedef enum
 {
     GlitchFilter_PW_Bypass,
@@ -60,7 +73,15 @@ typedef struct
     STD_EnType                      Interrupt_Rxc;
 }I2c_SlaveConfigType;
 
-#endif
+typedef struct
+{
+    uint32 TxMsgSize;
+    uint16 TxBuffer[I2c_TX_BUFFER_SIZE];
+    uint32 TxBufferIndex;
+    uint16 RxBuffer[I2c_RX_BUFFER_SIZE];
+    uint32 RxBufferIndex;
+    I2c_StatusType Status;
+}I2c_ChannelParamType;
 
-
+#endif /* I2C_PRIVATE_CONFIG */
 #endif /* E15_ARM_REPO_MCAL_I2C_I2C_TYPES_H_ */

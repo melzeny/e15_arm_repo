@@ -75,7 +75,7 @@ void Spi_init(void)
         SSICR0(Spi_BaseAddrArr[Channel]).B.FRF = Spi_CfgArr[i].CFG_FrameFormat;
 
         /* Configure Data Size */
-        SSICR0(Spi_BaseAddrArr[Channel]).B.DDS = Spi_CfgArr[i].CFG_DataSize;
+        SSICR0(Spi_BaseAddrArr[Channel]).B.DSS = Spi_CfgArr[i].CFG_DataSize;
 
         /* (7) Enable Spi to init configuration */
         SSICR1(Spi_BaseAddrArr[Channel]).B.SSE = STD_high;
@@ -234,7 +234,7 @@ static inline void Spi_writeTxFifo(Spi_ChannelType Channel)
     /*loop for TxBuffer */
     for (;
             Spi_ChannelParam[Channel].TxBufferIndex < Spi_ChannelParam[Channel].TxMsgSize  &&
-            SSISR(Spi_BaseAddrArr[Channel]).B.TNF == STD_high                               ;/*Check TxFIFO is not full*/
+            SSISR(Spi_BaseAddrArr[Channel]).B.TNF == STD_high ;/*Check TxFIFO is not full*/
             Spi_ChannelParam[Channel].TxBufferIndex++)
     {
         /* send TxBuffer Frame By Frame */
