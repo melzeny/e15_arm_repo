@@ -25,6 +25,7 @@
  * ==============================================*/
 static inline void Spi_SetBitRate(Spi_ChannelType SpiNum ,uint32 BitRate);
 static inline void Spi_IntRoutine(Spi_ChannelType channel);
+static inline void Spi_writeTxFifo(Spi_ChannelType Channel);
 /*================================================*
  * EXTERNS
  * ==============================================*/
@@ -183,24 +184,7 @@ Std_ReturnType Spi_AsyncTransmit(Spi_ChannelType Channel)
     Std_ReturnType ret = E_OK;
     if(Spi_ChannelParam[Channel].Status == SPI_IDLE)
     {
-        /* set channel status to be Busy*/
-        Spi_ChannelParam[Channel].Status = SPI_BUSY;
-
-        /*loop for TxBuffer */
-        for (Spi_ChannelParam[Channel].TxBufferIndex = 0;
-                Spi_ChannelParam[Channel].TxBufferIndex < Spi_ChannelParam[Channel].TxMsgSize ;
-                Spi_ChannelParam[Channel].TxBufferIndex++)
-        {
-            /* send TxBuffer Frame By Frame */
-            SSIDR(Spi_BaseAddrArr[Channel]) = Spi_ChannelParam[Channel].TxBuffer[Spi_ChannelParam[Channel].TxBufferIndex];
-
-            /* No need to wait as every Frame loaded in FIFO.
-             * If FIFO is Full Interrupt will fire and continue to transmit the message */
-        }
-        /*ResetTxBufferIndex */
-        Spi_ChannelParam[Channel].TxBufferIndex = 0;
-        /* set channel status to be IDLE*/
-        Spi_ChannelParam[Channel].Status = SPI_IDLE;
+        Spi_enInterrupt(Channel);
     }
     else
     {
@@ -242,6 +226,32 @@ Std_ReturnType Spi_SyncTransmit(Spi_ChannelType Channel)
     return ret;
 }
 
+static inline void Spi_writeTxFifo(Spi_ChannelType Channel)
+{
+    /* set channel status to be Busy*/
+    Spi_ChannelParam[Channel].Status = SPI_BUSY;
+
+    /*loop for TxBuffer */
+    for (;
+            Spi_ChannelParam[Channel].TxBufferIndex < Spi_ChannelParam[Channel].TxMsgSize  &&
+            SSISR(Spi_BaseAddrArr[Channel]).B.TNF == STD_high                               ;/*Check TxFIFO is not full*/
+            Spi_ChannelParam[Channel].TxBufferIndex++)
+    {
+        /* send TxBuffer Frame By Frame */
+        SSIDR(Spi_BaseAddrArr[Channel]) = Spi_ChannelParam[Channel].TxBuffer[Spi_ChannelParam[Channel].TxBufferIndex];
+
+        /* No need to wait as every Frame loaded in FIFO.
+         * If FIFO is Full Interrupt will fire and continue to transmit the message */
+    }
+    if(Spi_ChannelParam[Channel].TxBufferIndex >= Spi_ChannelParam[Channel].TxMsgSize)
+    {
+        Spi_diInterrupt(Spi_Channel0);
+        /*ResetTxBufferIndex */
+        Spi_ChannelParam[Channel].TxBufferIndex = 0;
+        /* set channel status to be IDLE*/
+        Spi_ChannelParam[Channel].Status = SPI_IDLE;
+    }
+}
 static inline void Spi_SetBitRate(Spi_ChannelType Channel ,uint32 u32SSInClk)
 {
     /*
@@ -271,14 +281,7 @@ static inline void Spi_IntRoutine(Spi_ChannelType Channel)
     if(SSIMIS(Spi_BaseAddrArr[Channel]).B.TXMIS == STD_high)
     {
         /*ONLY IN Master: Transmit new Frame if Transmission is Asynchronous*/
-        if(Spi_ChannelParam[Channel].TxBufferIndex < Spi_ChannelParam[Channel].TxMsgSize)
-        {
-            SSIDR(Spi_BaseAddrArr[Channel]) = Spi_ChannelParam[Channel].TxBuffer[Spi_ChannelParam[Channel].TxBufferIndex++];
-        }
-        else
-        {
-            /*clear Tx flag*/
-        }
+        Spi_writeTxFifo(Channel);
     }
 
     if(SSIMIS(Spi_BaseAddrArr[Channel]).B.RXMIS == STD_high)
