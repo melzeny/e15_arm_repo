@@ -23,7 +23,7 @@
 /*================================================*
  * CONFIGURATIONS
  * ==============================================*/
-const uint8 I2C_NumOfActivatedSpi = 4;
+const uint8 I2C_NumOfActivatedChannel = 4;
 
 
 const I2c_MasterConfigType I2C_Master_CfgArr[]    = {

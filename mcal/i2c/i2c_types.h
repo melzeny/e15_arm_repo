@@ -48,7 +48,7 @@ typedef enum
 
 typedef struct
 {
-    I2c_ChannelType                 I2cChannel;
+    I2c_ChannelType                 Channel;
     uint32                          ClockRate;
     STD_EnType                      MasterHighSpeed;
     STD_EnType                      ClockHighSpeed;

@@ -23,7 +23,7 @@
 /*================================================*
  * EXTERNS
  * ==============================================*/
-extern const uint8 I2C_NumOfActivatedSpi;
+extern const uint8 I2C_NumOfActivatedChannel;
 extern const I2c_MasterConfigType I2C_Master_CfgArr[];
 extern const I2c_SlaveConfigType I2C_Slave_CfgArr[];
 /*================================================*
@@ -43,11 +43,24 @@ static inline void I2c_SetSlaveAddr(I2c_ChannelType Channel , uint8 SlaveAddress
  * ==============================================*/
 void I2c_Init(void)
 {
-    /* Initialize the I2C Mode Master\slave */
+    uint8 i;
+    I2c_ChannelType Channel;
+    for (i = 0; i < I2C_NumOfActivatedChannel; ++i)
+    {
+#if (I2C_OPR_MODE_SELECTOR==I2C_OPR_MODE_SLAVE)
 
-    /* FOR MASTER: Set the desired SCL clock speed */
 
-    /*FOR MASTER:  Enable Master TxRx */
+#else
+        Channel = I2C_Master_CfgArr[i].Channel;
+        /* Initialize the I2C Mode Master\slave */
+        I2CMCR(I2c_BaseAddrArr[i]).B.MFE = STD_high;
+
+
+        /* FOR MASTER: Set the desired SCL clock speed */
+
+        /*FOR MASTER:  Enable Master TxRx */
+#endif
+    }
 }
 void I2c_enInterrupt(I2c_ChannelType Channel)
 {
@@ -99,8 +112,61 @@ Std_ReturnType I2c_SyncRequest(I2c_ChannelType Channel,
                                I2c_RequestType Request,
                                uint8 MsgSize)
 {
-    Std_ReturnType  ret = E_OK;
+    Std_ReturnType ret = E_OK;
+    if(I2c_ChannelParamType[Channel].Status == I2c_idle)
+    {
+        I2c_ChannelParamType[Channel].Status = I2c_busy;
 
+        I2c_GenerateStartCond(Channel);
+        I2c_SetSlaveAddr(Channel,SLA,Request);
+
+
+        /* wait for Address acknowledgment*/
+        while(I2CMCS_Read(I2c_BaseAddrArr[Channel]).B.ADRACK == STD_high)
+        {
+            ;
+        }
+        if (Request==I2c_Request_Write) {
+
+            for (I2c_ChannelParam[Channel].TxBufferIndex = 0;
+                    I2c_ChannelParam[Channel].TxBufferIndex < I2c_ChannelParam[Channel].TxMsgSize;
+                    I2c_ChannelParam[Channel].TxBufferIndex++)
+            {
+                I2CMDR(I2c_BaseAddrArr[Channel]) = I2c_ChannelParam[Channel].TxBuffer[I2c_ChannelParam[Channel].TxBufferIndex];
+
+                /*wait the transmitted Data to be Acknowledge */
+                while(I2CMCS_Read(I2c_BaseAddrArr[Channel]).B.DATACK == STD_high)
+                {
+                    ;
+                }
+            }
+
+
+        }
+        else{
+
+            for (I2c_ChannelParam[Channel].RxBufferIndex = 0;
+                    I2c_ChannelParam[Channel].RxBufferIndex < I2c_ChannelParam[Channel].RxMsgSize;
+                    I2c_ChannelParam[Channel].RxBufferIndex++)
+            {
+
+
+                I2c_ChannelParam[Channel].RxBuffer[I2c_ChannelParam[Channel].RxBufferIndex]= I2CMDR(I2c_BaseAddrArr[Channel]);
+
+                while(I2CMCS_Read(I2c_BaseAddrArr[Channel]).B.== STD_low)
+
+                {
+                    ;
+                }
+            }
+
+        }
+        I2c_ChannelParamType[Channel].Status = I2c_idle;
+    }
+    else
+    {
+        ret =E_NOT_OK;
+    }
 
     return ret;
 }

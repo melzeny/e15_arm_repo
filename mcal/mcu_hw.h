@@ -513,20 +513,336 @@ typedef union
 /*===========================================================*
  * I2C REGISTERS                                             *
  *========================================================== */
- 
-typedef struct
-{
-	uint32 RCLKTO_WHS          :1;
-	uint32 RBUSBSY_WACK        :1;
-	uint32 RIDLE_WSTOP         :1;
-	uint32 RARBLST_WSTART      :1;
-	uint32 RDATACK_WRUN        :1;
-	uint32 RADRACK             :1;
-	uint32 RERROR              :1;
-	uint32 RBUSY               :1;
-	uint32                    :24;
-}I2C_I2CMCS_TAG;
 
+/*Register 1 /////////////////////////////////////////////////*/
+typedef union
+{
+    uint32 R;
+    struct
+    {
+        uint32 RS      :1 ;
+        uint32 SA      :7;
+        uint32         :24;
+
+    }B;
+}I2C_I2CMSA_TAG;
+
+/*Register 2 /////////////////////////////////////////////////*/
+typedef union
+{
+    uint32 R;
+    struct
+    {
+        uint32 BUSY          :1;
+        uint32 ERROR         :1;
+        uint32 ADRACK        :1;
+        uint32 DATACK        :1;
+        uint32 ARBLST        :1;
+        uint32 IDLE          :1;
+        uint32 BUSBSY        :1;
+        uint32 CLKTO         :1;
+        uint32               :24;
+
+    }B;
+}I2C_I2CMCS_Read;
+
+
+typedef union
+{
+    uint32 R;
+    struct
+    {
+        uint32 RUN            :1;
+        uint32 START          :1;
+        uint32 STOP           :1;
+        uint32 ACK            :1;
+        uint32 HS             :1;
+        uint32                :27;
+
+    }B;
+}I2C_I2CMCS_Write;
+
+
+/*Register 3 /////////////////////////////////////////////////*/
+
+typedef union
+{
+    uint32 R;
+    struct
+    {
+    uint32 DATA          :8;
+    uint32               :24;
+    }B;
+}I2C_I2CMDR_TAG;
+
+/*Register 4 /////////////////////////////////////////////////*/
+typedef union
+{
+    uint32 R;
+    struct
+    {
+        uint32 TPR          :7;
+        uint32 HS           :1;
+        uint32              :24;
+
+    }B;
+}I2C_I2CMTPR_TAG;
+
+/*Register 5/////////////////////////////////////////////////*/
+typedef union
+{
+    uint32 R;
+    struct
+    {
+        uint32 IM            :1;
+        uint32 CLKIM         :1;
+        uint32               :30;
+
+    }B;
+}I2C_I2CMIMR_TAG;
+
+/*Register 6 /////////////////////////////////////////////////*/
+typedef union
+{
+    uint32 R;
+    struct
+    {
+        uint32 RIS            :1;
+        uint32 CLKRIS         :1;
+        uint32                :30;
+
+    }B;
+}I2C_I2CMRIS_TAG;
+
+
+/*Register 7 /////////////////////////////////////////////////*/
+typedef union
+{
+    uint32 R;
+    struct
+    {
+        uint32 MIS           :1;
+        uint32 CLKMIS        :1;
+        uint32               :30;
+
+    }B;
+}I2C_I2CMMIS_TAG;
+
+/*Register 8 /////////////////////////////////////////////////*/
+typedef union
+{
+    uint32 R;
+    struct
+    {
+        uint32 IC           :1;
+        uint32 CLKIC        :1;
+        uint32              :30;
+
+    }B;
+}I2C_I2CMICR_TAG;
+
+
+/*Register 9 /////////////////////////////////////////////////*/
+typedef union
+{
+    uint32 R;
+    struct
+    {
+        uint32 LPBK       :1;
+        uint32 reserved   :3;
+        uint32 MFE        :1;
+        uint32 SFE        :1;
+        uint32 GFE        :1;
+        uint32            :25;
+
+    }B;
+}I2C_I2CMCR_TAG;
+
+typedef union
+{
+    uint32 R;
+    struct
+    {
+        uint32 CNTL       :8;
+        uint32            :24;
+
+    }B;
+}I2C_I2CMCLKOCNT_TAG;
+
+typedef union
+{
+    uint32 R;
+    struct
+    {
+        uint32 SCL       :1;
+        uint32 SDA       :1;
+        uint32           :30;
+
+    }B;
+}I2C_I2CMBMON_TAG;
+
+
+typedef union
+{
+    uint32 R;
+    struct
+    {
+        uint32 reserved       :4;
+        uint32 GFPW           :3;
+        uint32                :25;
+
+    }B;
+}I2C_I2CMCR2_TAG;
+
+
+typedef union
+{
+    uint32 R;
+    struct
+    {
+        uint32 OAR       :7;
+        uint32           :25;
+
+    }B;
+}I2C_I2CSOAR_TAG;
+
+/*Register 14 /////////////////////////////////////////////////*/
+typedef union
+{
+    uint32 R;
+    struct
+    {
+        uint32 RREQ       :1;
+        uint32 TREQ       :1;
+        uint32 FBR        :1;
+        uint32 OAR2SEL    :1;
+        uint32            :28;
+
+    }B;
+}I2C_I2CSCSR_Read;
+
+
+typedef union
+{
+    uint32 R;
+    struct
+    {
+        uint32 DA       :1;
+        uint32          :31;
+
+    }B;
+}I2C_I2CSCSR_Write;
+
+typedef union
+{
+    uint32 R;
+    struct
+    {
+        uint32 DATA       :8;
+        uint32            :24;
+
+    }B;
+}I2C_I2CSDR_TAG;
+
+typedef union
+{
+    uint32 R;
+    struct
+    {
+        uint32 DATAIM       :1;
+        uint32 STARTIM      :1;
+        uint32 STOPIM       :1;
+        uint32              :29;
+
+    }B;
+}I2C_I2CSIMR_TAG;
+
+
+typedef union
+{
+    uint32 R;
+    struct
+    {
+        uint32 DATARIS       :1;
+        uint32 STARTRIS      :1;
+        uint32 STOPRIS       :1;
+        uint32              :29;
+
+    }B;
+}I2C_I2CSRIS_TAG;
+
+
+typedef union
+{
+    uint32 R;
+    struct
+    {
+        uint32 DATAMIS       :1;
+        uint32 STARTMIS      :1;
+        uint32 STOPMIS       :1;
+        uint32              :29;
+
+    }B;
+}I2C_I2CSMIS_TAG;
+
+typedef union
+{
+    uint32 R;
+    struct
+    {
+        uint32 DATAIC       :1;
+        uint32 STARTIC      :1;
+        uint32 STOPIC       :1;
+        uint32              :29;
+
+    }B;
+}I2C_I2CSICR_TAG;
+
+typedef union
+{
+    uint32 R;
+    struct
+    {
+        uint32 OAR2        :7;
+        uint32 OAR2EN      :1;
+        uint32             :24;
+
+    }B;
+}I2C_I2CSOAR2_TAG;
+
+typedef union
+{
+    uint32 R;
+    struct
+    {
+        uint32 ACKOEN        :1;
+        uint32 ACKOVAL       :1;
+        uint32               :30;
+
+    }B;
+}I2C_I2CSACKCTL_TAG;
+
+typedef union
+{
+    uint32 R;
+    struct
+    {
+        uint32 HS        :1;
+        uint32           :31;
+
+    }B;
+}I2C_I2CPP_TAG;
+
+typedef union
+{
+    uint32 R;
+    struct
+    {
+        uint32 HS        :1;
+        uint32           :31;
+
+    }B;
+}I2C_I2CPC_TAG;
 
 
 
@@ -560,15 +876,16 @@ typedef struct
 #define I2C_2_BASE_ADDRESS                         0x40022000
 #define I2C_3_BASE_ADDRESS                         0x40023000
 
-#define I2CMSA(I2C_BASE_ADDR)                      GET_REG(I2C_BASE_ADDR, uint32, I2CMSA_OFFSET)
-#define I2CMCS(I2C_BASE_ADDR)                      GET_REG(I2C_BASE_ADDR, I2C_I2CMCS_TAG, I2CMCS_OFFSET)
+#define I2CMSA(I2C_BASE_ADDR)                      GET_REG(I2C_BASE_ADDR,I2C_I2CMSA_TAG, I2CMSA_OFFSET)
+#define I2CMCS_Read(I2C_BASE_ADDR)                      GET_REG(I2C_BASE_ADDR, I2C_I2CMCS_Read, I2CMCS_OFFSET)
+#define I2CMCS_Write(I2C_BASE_ADDR)                      GET_REG(I2C_BASE_ADDR, I2C_I2CMCS_Write, I2CMCS_OFFSET)
 #define I2CMDR(I2C_BASE_ADDR)                      GET_REG(I2C_BASE_ADDR, uint32, I2CMDR_OFFSET)
 #define I2CMTPR(I2C_BASE_ADDR)                     GET_REG(I2C_BASE_ADDR, uint32, I2CMTPR_OFFSET)
 #define I2CMIMR(I2C_BASE_ADDR)                     GET_REG(I2C_BASE_ADDR, uint32, I2CMIMR_OFFSET)
 #define I2CMRIS(I2C_BASE_ADDR)                     GET_REG(I2C_BASE_ADDR, uint32, I2CMRIS_OFFSET)
 #define I2CMMIS(I2C_BASE_ADDR)                     GET_REG(I2C_BASE_ADDR, uint32, I2CMMIS_OFFSET)
 #define I2CMICR(I2C_BASE_ADDR)                     GET_REG(I2C_BASE_ADDR, uint32, I2CMICR_OFFSET)
-#define I2CMCR(I2C_BASE_ADDR)                      GET_REG(I2C_BASE_ADDR, uint32, I2CMCR_OFFSET)
+#define I2CMCR(I2C_BASE_ADDR)                      GET_REG(I2C_BASE_ADDR, I2C_I2CMCR_TAG, I2CMCR_OFFSET)
 #define I2CMCLKOCNT(I2C_BASE_ADDR)                 GET_REG(I2C_BASE_ADDR, uint32, I2CMCLKOCNT_OFFSET)
 #define I2CMBMON(I2C_BASE_ADDR)                    GET_REG(I2C_BASE_ADDR, uint32, I2CMBMON_OFFSET)
 #define I2CMCR2(I2C_BASE_ADDR)                     GET_REG(I2C_BASE_ADDR, uint32, I2CMCR2_OFFSET)
@@ -580,7 +897,7 @@ typedef struct
 #define I2CSMIS(I2C_BASE_ADDR)                     GET_REG(I2C_BASE_ADDR, uint32, I2CSMIS_OFFSET)
 #define I2CSICR(I2C_BASE_ADDR)                     GET_REG(I2C_BASE_ADDR, uint32, I2CSICR_OFFSET)
 #define I2CSOAR2(I2C_BASE_ADDR)                    GET_REG(I2C_BASE_ADDR, uint32, I2CSOAR2_OFFSET)
-#define I2CSACKCTL (I2C_BASE_ADDR)                 GET_REG(I2C_BASE_ADDR, uint32, I2CSACKCTL_OFFSET)
+#define I2CSACKCTL(I2C_BASE_ADDR)                 GET_REG(I2C_BASE_ADDR, uint32, I2CSACKCTL_OFFSET)
 #define I2CPP(I2C_BASE_ADDR)                       GET_REG(I2C_BASE_ADDR, uint32, I2CPP_OFFSET)
 #define I2CPC(I2C_BASE_ADDR)                       GET_REG(I2C_BASE_ADDR, uint32, I2CPC_OFFSET)
 
